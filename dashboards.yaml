@@ -1,0 +1,24 @@
+apiVersion: 1
+
+providers:
+  - name: 'infra'
+    orgId: 1
+    folderUid: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards/infra-dashboards
+      foldersFromFilesStructure: true
+
+  - name: 'dev'
+    orgId: 2
+    folderUid: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards/other-dashboards
+      foldersFromFilesStructure: true

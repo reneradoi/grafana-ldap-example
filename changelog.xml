@@ -1,0 +1,40 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="Santosh B" id="0001_CREATE_AND_ADD_DATA_TO_ORG">
+        <sql>
+            create table if not exists org
+            (
+            id serial not null
+            constraint org_pkey
+            primary key,
+            version integer not null,
+            name varchar(190) not null,
+            address1 varchar(255),
+            address2 varchar(255),
+            city varchar(255),
+            state varchar(255),
+            zip_code varchar(50),
+            country varchar(255),
+            billing_email varchar(255),
+            created timestamp not null,
+            updated timestamp not null
+            );
+
+            alter table org owner to postgres;
+
+            create unique index if not exists "UQE_org_name"
+            on org (name);
+
+            insert into org (id, version, name, created, updated)
+            values (1, 0, 'Devops', current_timestamp, current_timestamp);
+
+            insert into org (id, version, name, created, updated)
+            values (2, 0, 'Rmt', current_timestamp, current_timestamp);
+
+            insert into org (id, version, name, created, updated)
+            values (3, 0, 'Playground', current_timestamp, current_timestamp);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,50 @@
+[[servers]]
+host = "openldap"
+port = 1389
+use_ssl = false
+start_tls = false
+ssl_skip_verify = false
+bind_dn = "cn=admin,dc=example,dc=org"
+bind_password = 'adminpassword'
+search_filter = "(|(cn=%s)(mail=%s))"
+search_base_dns = ["dc=example,dc=org"]
+group_search_filter = "(&(objectClass=groupOfNames)(member=cn=%s,ou=tw,dc=example,dc=org))"
+group_search_filter_user_attribute = "cn"
+
+[servers.attributes]
+username = "cn"
+email =  "mail"
+surname = "sn"
+uid = "uid"
+name = "givenName"
+
+[[servers.group_mappings]]
+group_dn = "cn=devops,ou=tw,dc=example,dc=org"
+org_role = "Admin"
+grafana_admin = true
+org_id = 1
+
+[[servers.group_mappings]]
+group_dn = "cn=devops,ou=tw,dc=example,dc=org"
+org_role = "Admin"
+org_id = 2
+
+[[servers.group_mappings]]
+group_dn = "cn=devops,ou=tw,dc=example,dc=org"
+org_role = "Admin"
+org_id = 3
+
+[[servers.group_mappings]]
+group_dn = "cn=rmt,ou=tw,dc=example,dc=org"
+org_role = "Editor"
+org_id = 2
+
+[[servers.group_mappings]]
+group_dn = "cn=dev,ou=tw,dc=example,dc=org"
+org_role = "Viewer"
+org_id = 2
+
+[[servers.group_mappings]]
+group_dn = "*"
+org_role = "Editor"
+org_id = 3
