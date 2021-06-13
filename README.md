@@ -2,13 +2,13 @@
 
 An example setup of grafana authentication and authorization using LDAP.
 
-[More Details on LDAP integration] (https://grafana.com/docs/grafana/latest/auth/ldap/)
+More Details - https://grafana.com/docs/grafana/latest/auth/ldap/
 
 #### Challenge
-- For authorization at dashboards level - grafana suggests to use [Teams] (https://grafana.com/docs/grafana/latest/manage-users/manage-teams/). 
+- For authorization at dashboards level - grafana suggests to use teams (https://grafana.com/docs/grafana/latest/manage-users/manage-teams/). 
 An user can be part of multiple teams and each team can be authorized to view/edit particular dashboards.
   
-- Teams have to created manually -  syncing Teams with LDAP groups is an [enterprise feature] (https://grafana.com/docs/grafana/latest/enterprise/enhanced_ldap/).
+- Teams have to created manually -  syncing Teams with LDAP groups is an enterprise feature (https://grafana.com/docs/grafana/latest/enterprise/enhanced_ldap/).
   
 #### Proposed Solution
 - As a workaround, we can use orgs to group the dashboards and control the access to dashboards at org level.
@@ -20,7 +20,7 @@ An user can be part of multiple teams and each team can be authorized to view/ed
 
 To start  -  `make start`
 
-use any browser and access grafana at  (http://localhost:3000)
+use any browser and access grafana at http://localhost:3000
 
 To stop   - `make stop`
 
