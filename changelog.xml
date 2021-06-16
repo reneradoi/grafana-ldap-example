@@ -35,6 +35,7 @@
 
             insert into org (id, version, name, created, updated)
             values (3, 0, 'Playground', current_timestamp, current_timestamp);
+            SELECT setval('org_id_seq', 3, true);
         </sql>
     </changeSet>
 </databaseChangeLog>
