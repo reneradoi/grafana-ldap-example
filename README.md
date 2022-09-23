@@ -18,24 +18,19 @@ An user can be part of multiple teams and each team can be authorized to view/ed
 - Clone the repo.
 - Install docker and docker-compose - if not present.
 
-To start  -  `make start`
+To start  -  `docker-compose up -d`
 
-use any browser and access grafana at http://localhost:3000
+Use any browser and access grafana at http://localhost:3000. If you run the setup in WSL2, use this command to launch 
+your browser: `sensible-browser http://localhost:3000`. Now log in with a username and password.
 
-To stop   - `make stop`
+To stop and clean   - `docker-compose down -v  --remove-orphans`
 
-To clean  - `make clean`
 
 #### Configuration
 - To provision dashboards during start up and have them tied a particular org - we would need the org to be created before hand.
 - We use liquibase migrations to achieve it.
 - To add another org - add the insert statement in another changeset in changelog.xml file.
-- Provisioning of dashboards are done using dashboards.yaml
-- Below org structure is pre-loaded in openLDAP service.
-  
-    ![img.png](img.png)
-  
-
+- Provisioning of dashboards are done using dashboards.yaml (some static dashboards used here).
 - LDAP group mappings are present in ldap.toml.
 
 ##### Brief explantion of ldap.toml
@@ -67,63 +62,16 @@ search_base_dns = ["dc=example,dc=org"]
 
 ###### Current LDAP Configuration
 
-- We have 3 orgs with org ids - 1, 2, 3
+- We have 2 orgs with org ids - 1 and 2
 - And each dashboards is part of a single org.
-- We have 3 LDAP groups - Devops, Dev, RMT
-- A single user can be part of multiple LDAP groups.
-- Access to the user is determined by UNION of access provided by all group_mappings - Hence there are no conflicts.
+- We have 2 LDAP groups - team1 and team2
+- Each team can have multiple members:
+  - team1: team101, team102
+  - team2: team201, team202
 
-`Devops` - Any user part of this group is a grafana super admin, and admin for all orgs. Note that this has to be explicitly configured for all the orgs.
-Being a super admin, doesn't  guarantee access to all orgs by default.
-```text
-    [[servers.group_mappings]]
-    group_dn = "cn=devops,ou=tw,dc=example,dc=org"
-    org_role = "Admin"
-    grafana_admin = true
-    org_id = 1
-    
-    [[servers.group_mappings]]
-    group_dn = "cn=devops,ou=tw,dc=example,dc=org"
-    org_role = "Admin"
-    org_id = 2
-    
-    [[servers.group_mappings]]
-    group_dn = "cn=devops,ou=tw,dc=example,dc=org"
-    org_role = "Admin"
-    org_id = 3
- ```
+`team1` - Any user part of this group is a grafana super admin, and admin for all orgs. Note that this has to be explicitly configured for all the orgs.
 
-`RMT` - Any user part of rmt group has editor access to org 2. ( and all dashboards tied to org 2)
-```text
-    [[servers.group_mappings]]
-    group_dn = "cn=rmt,ou=tw,dc=example,dc=org"
-    org_role = "Editor"
-    org_id = 2
-```
-
-`Dev` - Any user part of dev group has view only access to org 2. ( and all dashboards tied to org 2)
-
-```text
-    [[servers.group_mappings]]
-    group_dn = "cn=rmt,ou=tw,dc=example,dc=org"
-    org_role = "Editor"
-    org_id = 2
-```
-
-All the users (irrespective of LDAP groups) have editor access to org 3.
-
-```text
-    [[servers.group_mappings]]
-    group_dn = "*"
-    org_role = "Editor"
-    org_id = 3
-```
-
-Usernames:
-
-Devops - devops01, devops02
-Devs - dev01, dev02
-RMT - rmt01, rmt02
+`team2` - Any user part of this group has editor access to org 2 ( and all dashboards tied to org 2)
 
 Passwords - password1 (for all 1s), password2( for all 2s)
 

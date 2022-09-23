@@ -12,7 +12,7 @@ providers:
       path: /etc/grafana/dashboards/infra-dashboards
       foldersFromFilesStructure: true
 
-  - name: 'dev'
+  - name: 'other'
     orgId: 2
     folderUid: ''
     type: file
@@ -21,4 +21,15 @@ providers:
     allowUiUpdates: false
     options:
       path: /etc/grafana/dashboards/other-dashboards
+      foldersFromFilesStructure: true
+
+  - name: 'infra'
+    orgId: 2
+    folderUid: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards/infra-dashboards
       foldersFromFilesStructure: true

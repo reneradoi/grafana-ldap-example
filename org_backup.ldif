@@ -6,133 +6,67 @@ objectClass: organization
 dc: example
 o: example
 
-dn: ou=users,dc=example,dc=org
+dn: ou=smt,dc=example,dc=org
 objectClass: organizationalUnit
-ou: users
+ou: smt
 
-dn: cn=user01,ou=users,dc=example,dc=org
+dn: cn=team1,ou=smt,dc=example,dc=org
+objectClass: groupOfNames
+cn: team1
+member: cn=team101,ou=smt,dc=example,dc=org
+member: cn=team102,ou=smt,dc=example,dc=org
+
+dn: cn=team101,ou=smt,dc=example,dc=org
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: user01
-cn: User1
+cn: team101
 gidNumber: 1000
 homeDirectory: /home/user01
-sn: Bar1
-uid: user01
+sn: Max
+uid: team101
 uidNumber: 1000
 userPassword:: cGFzc3dvcmQx
 
-dn: cn=user02,ou=users,dc=example,dc=org
+dn: cn=team102,ou=smt,dc=example,dc=org
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: user02
-cn: User2
+cn: team102
 gidNumber: 1001
 homeDirectory: /home/user02
-sn: Bar2
-uid: user02
+sn: Maria
+uid: team102
 uidNumber: 1001
 userPassword:: cGFzc3dvcmQy
 
-dn: cn=readers,ou=users,dc=example,dc=org
+dn: cn=team2,ou=smt,dc=example,dc=org
 objectClass: groupOfNames
-cn: readers
-member: cn=user01,ou=users,dc=example,dc=org
-member: cn=user02,ou=users,dc=example,dc=org
+cn: team2
+member: cn=team201,ou=smt,dc=example,dc=org
+member: cn=team202,ou=smt,dc=example,dc=org
 
-dn: ou=tw,dc=example,dc=org
-objectClass: organizationalUnit
-ou: tw
-
-dn: cn=dev01,ou=tw,dc=example,dc=org
+dn: cn=team201,ou=smt,dc=example,dc=org
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: dev01
-gidNumber: 1000
-homeDirectory: /home/user01
-sn: Aneesh
-uid: dev01
-uidNumber: 1000
-userPassword:: cGFzc3dvcmQx
-
-dn: cn=dev02,ou=tw,dc=example,dc=org
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-cn: dev02
-gidNumber: 1001
-homeDirectory: /home/user02
-sn: Joston
-uid: dev02
-uidNumber: 1001
-userPassword:: cGFzc3dvcmQy
-
-dn: cn=dev,ou=tw,dc=example,dc=org
-objectClass: groupOfNames
-cn: dev
-member: cn=dev01,ou=dev,dc=example,dc=org
-member: cn=dev02,ou=dev,dc=example,dc=org
-
-dn: cn=rmt,ou=tw,dc=example,dc=org
-objectClass: groupOfNames
-cn: rmt
-member: cn=rmt01,ou=tw,dc=example,dc=org
-member: cn=rmt02,ou=tw,dc=example,dc=org
-
-dn: cn=rmt01,ou=tw,dc=example,dc=org
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-cn: rmt01
-gidNumber: 1000
-homeDirectory: /home/user01
-sn: Sagar
-uid: rmt01
-uidNumber: 1000
-userPassword:: cGFzc3dvcmQx
-
-dn: cn=rmt02,ou=tw,dc=example,dc=org
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-cn: rmt02
-gidNumber: 1001
-homeDirectory: /home/user02
-sn: Veera
-uid: rmt02
-uidNumber: 1001
-userPassword:: cGFzc3dvcmQy
-
-dn: cn=devops,ou=tw,dc=example,dc=org
-objectClass: groupOfNames
-cn: devops
-member: cn=devops01,ou=tw,dc=example,dc=org
-member: cn=devops02,ou=tw,dc=example,dc=org
-
-dn: cn=devops01,ou=tw,dc=example,dc=org
-objectClass: inetOrgPerson
-objectClass: posixAccount
-objectClass: shadowAccount
-cn: devops01
+cn: team201
 gidNumber: 2000
 homeDirectory: /home/user01
-sn: Krishna
-uid: devops02
+sn: Tom
+uid: team201
 uidNumber: 2000
 userPassword:: cGFzc3dvcmQx
 
-dn: cn=devops02,ou=tw,dc=example,dc=org
+dn: cn=team202,ou=smt,dc=example,dc=org
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: devops02
+cn: team202
 gidNumber: 2001
 homeDirectory: /home/user02
-sn: Shakir
-uid: devops02
+sn: Tina
+uid: team202
 uidNumber: 2001
 userPassword:: cGFzc3dvcmQy
 
